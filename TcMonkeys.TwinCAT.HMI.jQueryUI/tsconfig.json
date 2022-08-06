@@ -29,12 +29,12 @@
     "../Packages/Beckhoff.TwinCAT.HMI.Framework.12.754.4/runtimes/native1.12-tchmi/TcHmi.d.ts"
   ],
   "files": [
-    "Scripts/typings/jqueryui/jqueryui.d.ts",
-    "Scripts/typings/jquery/jquery.d.ts",
     "Widgets\\Progressbar/Progressbar.ts",
     "Widgets/Progressbar/Progressbar.ts",
     "Widgets\\Slider/Slider.ts",
     "Widgets/Slider/Slider.ts",
-    "Interactions/Draggable.ts"
+    "Interactions/Draggable.ts",
+    "Scripts/typings/jqueryui/jqueryui.d.ts",
+    "Scripts/typings/jquery/jquery.d.ts"
   ]
 }

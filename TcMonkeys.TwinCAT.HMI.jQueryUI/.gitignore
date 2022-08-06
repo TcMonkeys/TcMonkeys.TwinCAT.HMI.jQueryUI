@@ -10,7 +10,7 @@ liveview_*
 *.pid
 **/.hmiframework/
 **/.hmipkgs/
-**/*.d.ts
+## **/*.d.ts
 **/*.js.map
 
 ## Ignore Visual Studio temporary files, build results, and
