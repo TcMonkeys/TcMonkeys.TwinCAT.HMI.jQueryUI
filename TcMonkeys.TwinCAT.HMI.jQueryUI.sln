@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# TcXaeShell Solution File, Format Version 11.00
+VisualStudioVersion = 15.0.28307.1300
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{3B740506-4966-4147-AB1F-357FE08946EA}") = "TcMonkeys.TwinCAT.HMI.jQueryUI", "TcMonkeys.TwinCAT.HMI.jQueryUI\TcMonkeys.TwinCAT.HMI.jQueryUI.hmiextproj", "{10D86B1F-138A-4176-9DC2-19E64D55BF69}"
+EndProject
+Project("{FE7A1B72-C5B7-4D7C-BB7D-76384D4DE8E1}") = "Demo", "Demo\Demo.hmiproj", "{2445CC96-92A1-45F6-9111-F412F007974B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|TwinCAT HMI = Debug|TwinCAT HMI
+		Release|TwinCAT HMI = Release|TwinCAT HMI
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10D86B1F-138A-4176-9DC2-19E64D55BF69}.Debug|TwinCAT HMI.ActiveCfg = Debug|TwinCAT HMI
+		{10D86B1F-138A-4176-9DC2-19E64D55BF69}.Debug|TwinCAT HMI.Build.0 = Debug|TwinCAT HMI
+		{10D86B1F-138A-4176-9DC2-19E64D55BF69}.Release|TwinCAT HMI.ActiveCfg = Release|TwinCAT HMI
+		{10D86B1F-138A-4176-9DC2-19E64D55BF69}.Release|TwinCAT HMI.Build.0 = Release|TwinCAT HMI
+		{2445CC96-92A1-45F6-9111-F412F007974B}.Debug|TwinCAT HMI.ActiveCfg = Debug|TwinCAT HMI
+		{2445CC96-92A1-45F6-9111-F412F007974B}.Debug|TwinCAT HMI.Build.0 = Debug|TwinCAT HMI
+		{2445CC96-92A1-45F6-9111-F412F007974B}.Release|TwinCAT HMI.ActiveCfg = Release|TwinCAT HMI
+		{2445CC96-92A1-45F6-9111-F412F007974B}.Release|TwinCAT HMI.Build.0 = Release|TwinCAT HMI
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20A8409C-D77C-48AD-95C3-833B053E28FA}
+	EndGlobalSection
+EndGlobal

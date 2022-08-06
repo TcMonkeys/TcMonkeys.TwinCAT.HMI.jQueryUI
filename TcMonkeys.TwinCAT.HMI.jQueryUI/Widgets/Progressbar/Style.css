@@ -1,0 +1,47 @@
+﻿/* General theme independed control css. */
+
+.TcHmi_Controls_TcMonkeys_TwinCAT_HMI_jQueryUI_Progressbar {
+    overflow: visible;
+}
+
+    .TcHmi_Controls_TcMonkeys_TwinCAT_HMI_jQueryUI_Progressbar-Template {
+        width: 100%;
+        height: 100%;
+    }
+
+        .TcHmi_Controls_TcMonkeys_TwinCAT_HMI_jQueryUI_Progressbar-Template .ui-slider{
+            width: 100%;
+            height: 100%;
+        }
+
+        .TcHmi_Controls_TcMonkeys_TwinCAT_HMI_jQueryUI_Progressbar-Template .ui-slider-handle {
+            height: calc(100% + 5px);
+        }
+
+            .TcHmi_Controls_TcMonkeys_TwinCAT_HMI_jQueryUI_Progressbar-Template .ui-slider-handle .with-value{
+                width: 3em;
+                height: 1.6em;
+                top: 50%;
+                margin-top: -.8em;
+                text-align: center;
+                line-height: 1.6em;
+            }
+
+/* If the main use for this control is interaction
+    uncomment the following lines to give user feedback:
+    This overlays the whole control with a white color
+    and change the mouse cursor */
+
+/*
+.TcHmi_Controls_TcMonkeys_TwinCAT_HMI_jQueryUI_Progressbar.TcHmi_Controls_System_TcHmiControl-operate-disallowed::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 100;
+    cursor: not-allowed;
+}
+*/

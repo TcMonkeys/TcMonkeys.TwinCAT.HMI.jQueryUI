@@ -1,0 +1,49 @@
+﻿{
+  "$schema": "../.hmiframework/Schema/FunctionDescription.Schema.json",
+  "apiVersion": 1,
+  "version": {
+    "full": "0.0.0.0",
+    "major": 0,
+    "minor": 0,
+    "revision": 0,
+    "build": 0
+  },
+  "dependencyFiles": [
+    {
+      "name": "Draggable.js",
+      "type": "JavaScript",
+      "description": ""
+    }
+  ],
+  "function": {
+    "name": "Draggable",
+    "namespace": "TcHmi.Functions.TcMonkeys_TwinCAT_HMI_jQueryUI",
+    "displayName": "Draggable",
+    "description": "",
+    "waitMode": "Synchronous",
+    "category": "",
+    "returnValue": {
+      "type": "tchmi:general#/definitions/String"
+    },
+    "arguments": [
+        {
+            "name": "control",
+            "displayName": "Control",
+            "type": "tchmi:framework#/definitions/TcHmi.Controls.System.TcHmiControl",
+            "description": "This is an important Parameter which does... This text is used in a tooltip.",
+            "defaultValue": null,
+            "required": true,
+            "bindable": true
+        },
+        {
+            "name": "parent",
+            "displayName": "Parent",
+            "type": "tchmi:framework#/definitions/TcHmi.Controls.System.TcHmiContainerControl",
+            "description": "This is an important Parameter which does... This text is used in a tooltip.",
+            "defaultValue": null,
+            "required": true,
+            "bindable": true
+        }
+    ]
+  }
+}

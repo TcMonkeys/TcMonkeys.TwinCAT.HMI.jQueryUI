@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.3.9.9\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.3.9.9\build\Microsoft.TypeScript.MSBuild.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">TwinCAT HMI</Platform>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <AvailablePlatforms>TwinCAT HMI</AvailablePlatforms>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TcHmiCreatorVersion>[1.12,]</TcHmiCreatorVersion>
+    <TargetFrameworkMoniker>native,Version=v1.12.0,Profile=tchmi</TargetFrameworkMoniker>
+    <TargetFramework>native1.12-tchmi</TargetFramework>
+    <ProjectTypeGuids>{3B740506-4966-4147-AB1F-357FE08946EA}</ProjectTypeGuids>
+    <ProjectGuid>10d86b1f-138a-4176-9dc2-19e64d55bf69</ProjectGuid>
+    <ProjectName>TcMonkeys_TwinCAT_HMI_jQueryUI</ProjectName>
+    <Name>TcMonkeys.TwinCAT.HMI.jQueryUI</Name>
+    <HmiInitial>1.12.754.4</HmiInitial>
+    <HmiRecent>1.12.756.1</HmiRecent>
+    <TcHmiDirectory>$(registry:HKEY_CURRENT_USER\Software\Beckhoff\TwinCAT3\3.1@InstallDir)\..\Functions\TE2000-HMI-Engineering</TcHmiDirectory>
+    <TcHmiDirectory Condition="'$(TcHmiDirectory)'==''">$(registry:HKEY_LOCAL_MACHINE\Software\Beckhoff\TwinCAT3\3.1@InstallDir)\..\Functions\TE2000-HMI-Engineering</TcHmiDirectory>
+    <TcHmiDirectory Condition="'$(TcHmiDirectory)'==''">$(registry:HKEY_LOCAL_MACHINE\Software\Wow6432Node\Beckhoff\TwinCAT3\3.1@InstallDir)\..\Functions\TE2000-HMI-Engineering</TcHmiDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|TwinCAT HMI' ">
+    <PlatformTarget>TwinCAT HMI</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefaultNamespace>TcMonkeys_TwinCAT_HMI_jQueryUI</DefaultNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|TwinCAT HMI' ">
+    <PlatformTarget>TwinCAT HMI</PlatformTarget>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefaultNamespace>TcMonkeys_TwinCAT_HMI_jQueryUI</DefaultNamespace>
+  </PropertyGroup>
+  <PropertyGroup Label="TwinCatHMI">
+    <TcHmiExtensionTypes>{CC169D49-EEDD-4BAF-8151-63DF12EDD7B4}</TcHmiExtensionTypes>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TwinCATHmi_Tasks>$(TcHmiDirectory)\MSBuild\Beckhoff.TwinCAT.HMI.tasks</TwinCATHmi_Tasks>
+    <TwinCATHmi_Targets>$(TcHmiDirectory)\MSBuild\Beckhoff.TwinCAT.HMI.targets</TwinCATHmi_Targets>
+  </PropertyGroup>
+  <Target Name="GetFrameworkPaths" />
+  <Import Project="$(TwinCATHmi_Tasks)" />
+  <Import Project="$(TwinCATHmi_Targets)" />
+  <ItemGroup>
+    <Content Include=".eslintrc.json">
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="Interactions\Draggable.function.json">
+      <SubType>Content</SubType>
+      <DependentUpon>Interactions\Draggable.ts</DependentUpon>
+    </Content>
+    <Content Include="Interactions\Draggable.ts">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\libs\jquery-ui.min.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\libs\jquery-ui.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\typings\jqueryui\jqueryui.d.ts">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\typings\jquery\jquery.d.ts">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="tsconfig.tpl.json">
+      <SubType>Content</SubType>
+      <Visible>true</Visible>
+    </Content>
+    <Content Include="tsconfig.json">
+      <SubType>Content</SubType>
+      <Visible>true</Visible>
+      <DependentUpon>tsconfig.tpl.json</DependentUpon>
+    </Content>
+    <Content Include="Widgets\Progressbar\Description.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Icons\16x16.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Icons\24x24.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Icons\32x32.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Icons\64x64.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Progressbar.ts">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Schema\Types.Schema.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Style.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Template.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Progressbar\Themes\Base\Style.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Description.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Icons\16x16.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Icons\24x24.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Icons\32x32.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Icons\64x64.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Schema\Types.Schema.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Slider.ts">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Style.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Template.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Widgets\Slider\Themes\Base\Style.css">
+      <SubType>Content</SubType>
+    </Content>
+    <HmiManifest Include="Manifest.json" />
+    <Content Include="LICENSE.txt" />
+    <Content Include="Images\logo.png" />
+    <Content Include="TcMonkeys_TwinCAT_HMI_jQueryUI.nuspec" />
+    <Content Include=".tfignore">
+      <SubType>Content</SubType>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include=".gitignore">
+      <SubType>Content</SubType>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="packages.config">
+      <SubType>Content</SubType>
+      <Visible>true</Visible>
+    </Content>
+    <Content Include="packages.xsd">
+      <SubType>Content</SubType>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Effects" />
+    <Folder Include="Interactions" />
+    <Folder Include="Scripts\libs" />
+    <Folder Include="Widgets" />
+    <Folder Include="Scripts\" />
+    <Folder Include="Scripts\typings\" />
+    <Folder Include="Scripts\typings\jqueryui\" />
+    <Folder Include="Scripts\typings\jquery\" />
+    <Folder Include="Widgets\Progressbar\" />
+    <Folder Include="Widgets\Progressbar\Icons\" />
+    <Folder Include="Widgets\Progressbar\Schema\" />
+    <Folder Include="Widgets\Progressbar\Themes\" />
+    <Folder Include="Widgets\Progressbar\Themes\Base\" />
+    <Folder Include="Widgets\Slider\" />
+    <Folder Include="Widgets\Slider\Icons\" />
+    <Folder Include="Widgets\Slider\Schema\" />
+    <Folder Include="Widgets\Slider\Themes\" />
+    <Folder Include="Widgets\Slider\Themes\Base\" />
+  </ItemGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <PreBuildEventDependsOn>
+    </PreBuildEventDependsOn>
+    <PostBuildEventDependsOn>
+    </PostBuildEventDependsOn>
+  </PropertyGroup>
+  <Target Name="PreBuildEvent" Condition="'$(PreBuildEvent)'!=''" DependsOnTargets="$(PreBuildEventDependsOn)">
+    <Exec WorkingDirectory="$(OutDir)" Command="$(PreBuildEvent)" />
+  </Target>
+  <Target Name="PostBuildEvent" Condition="'$(PostBuildEvent)' != '' and ('$(RunPostBuildEvent)'=='Always' or '$(RunPostBuildEvent)'=='OnOutputUpdated')" DependsOnTargets="$(PostBuildEventDependsOn)">
+    <Exec WorkingDirectory="$(OutDir)" Command="$(PostBuildEvent)" />
+  </Target>
+  <PropertyGroup>
+    <BuiltProjectOutputGroupDependsOn>
+      PreBuildEvent;
+      CoreBuild;
+      PostBuildEvent
+    </BuiltProjectOutputGroupDependsOn>
+    <CleanDependsOn>
+		BaseClean
+	</CleanDependsOn>
+  </PropertyGroup>
+  <Target Name="CoreBuild">
+    <Message Text="Microsoft.TypeScript.targets: $(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Importance="high" />
+    <Message Text="TypeScriptSdkDir: $(TypeScriptSdkDir)" Importance="high" />
+    <Message Text="TypeScriptToolsVersion: $(TypeScriptToolsVersion)" Importance="high" />
+    <Message Text="LastKnownTypeScriptVersion: $(LastKnownTypeScriptVersion)" Importance="high" />
+  </Target>
+  <Target Name="Build" DependsOnTargets="$(BuiltProjectOutputGroupDependsOn)" />
+  <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
+  <Target Name="ReBuild" DependsOnTargets="Clean; Build" />
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.3.9.9\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.3.9.9\build\Microsoft.TypeScript.MSBuild.targets')" />
+</Project>

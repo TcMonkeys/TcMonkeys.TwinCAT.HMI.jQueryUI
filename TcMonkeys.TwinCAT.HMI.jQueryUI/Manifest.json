@@ -1,0 +1,42 @@
+﻿{
+  "modules": [
+    {
+      "type": "Package",
+      "nugetId": "Beckhoff.TwinCAT.HMI.Framework"
+    },
+    {
+      "type": "Resource",
+      "path": "./Scripts/libs/jquery-ui.min.css"
+    },
+    {
+      "type": "Resource",
+      "path": "./Scripts/libs/jquery-ui.min.js"
+    },
+    {
+      "type": "Control",
+      "basePath": "./Widgets/Progressbar",
+      "descriptionFile": "Description.json",
+      "toolboxCategory": ""
+    },
+    {
+      "type": "Control",
+      "basePath": "./Widgets/Slider",
+      "descriptionFile": "Description.json",
+      "toolboxCategory": ""
+    },
+    {
+      "type": "Function",
+      "basePath": "./Interactions",
+      "descriptionFile": "Draggable.function.json"
+    }
+  ],
+  "provideMetadata": {
+    "toolbox": {
+      "TcMonkeys_TwinCAT_HMI_jQueryUI": {
+        "200": "TcMonkeys_TwinCAT_HMI_jQueryUI"
+      }
+    }
+  },
+  "$schema": ".hmiframework/Schema/Manifest.Schema.json",
+  "apiVersion": 1
+}
