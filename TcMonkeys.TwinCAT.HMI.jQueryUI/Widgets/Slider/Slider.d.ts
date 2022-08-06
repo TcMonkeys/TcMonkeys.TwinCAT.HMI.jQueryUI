@@ -11,6 +11,12 @@ declare module TcHmi {
                  */
                 constructor(element: JQuery, pcElement: JQuery, attrs: TcHmi.Controls.ControlAttributeList);
                 protected __elementTemplateRoot: JQuery;
+                protected __elementSlider: JQuery;
+                protected __elementSliderHandle1: JQuery;
+                protected __elementSliderHandle2: JQuery;
+                protected __sliderOptions: JQueryUI.SliderOptions;
+                protected __slider1Value: number;
+                protected __slider2Value: number;
                 /**
                   * If raised, the control object exists in control cache and constructor of each inheritation level was called.
                   * Call attribute processor functions here to initialize default values!
@@ -36,6 +42,16 @@ declare module TcHmi {
                 * Will be called automatically if system destroys control!
                 */
                 destroy(): void;
+                protected __onChange: (event: Event, ui: JQueryUI.SliderUIParams) => void;
+                protected __onStart: (event: Event, ui: JQueryUI.SliderUIParams) => void;
+                protected __onStop: (event: Event, ui: JQueryUI.SliderUIParams) => void;
+                protected __onSlide: (event: Event, ui: JQueryUI.SliderUIParams) => void;
+                protected __addValueInHandle(): void;
+                /**
+                * -------------------------------------------------- Getter and setter --------------------------------------------------
+                */
+                setSliderValue(newValue: number | null): void;
+                getSliderValue(): number | null;
             }
         }
     }

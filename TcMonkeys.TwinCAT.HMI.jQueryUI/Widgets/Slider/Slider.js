@@ -27,6 +27,20 @@ var TcHmi;
                 constructor(element, pcElement, attrs) {
                     /** Call base class constructor */
                     super(element, pcElement, attrs);
+                    this.__onChange = (event, ui) => {
+                        TcHmi.EventProvider.raise(this.getId() + '.onValueChanged');
+                    };
+                    this.__onStart = (event, ui) => {
+                        TcHmi.EventProvider.raise(this.getId() + '.onSlideStart');
+                    };
+                    this.__onStop = (event, ui) => {
+                        TcHmi.EventProvider.raise(this.getId() + '.onSlideStop');
+                    };
+                    this.__onSlide = (event, ui) => {
+                        this.__slider1Value = ui.value;
+                        TcHmi.EventProvider.raise(this.getId() + '.onSlide');
+                        TcHmi.EventProvider.raise(this.getId() + '.onPropertyChanged', { 'propertyName': 'SliderValue' });
+                    };
                 }
                 /**
                   * If raised, the control object exists in control cache and constructor of each inheritation level was called.
@@ -36,8 +50,25 @@ var TcHmi;
                     // Fetch template root element
                     this.__elementTemplateRoot = this.__element.find('.TcHmi_Controls_TcMonkeys_TwinCAT_HMI_jQueryUI_Slider-Template');
                     if (this.__elementTemplateRoot.length === 0) {
-                        throw new Error('Invalid Template.html');
+                        throw new Error('Invalid Template.html > root element');
                     }
+                    // Fetch slider element
+                    this.__elementSlider = this.__elementTemplateRoot.find('.ui-slider');
+                    if (this.__elementSlider.length === 0) {
+                        throw new Error('Invalid Template.html > slider element');
+                    }
+                    // Fetch slider element
+                    this.__elementSliderHandle1 = this.__elementSlider.find('.ui-slider-handle');
+                    if (this.__elementSliderHandle1.length === 0) {
+                        throw new Error('Invalid Template.html > slider handle 1 element');
+                    }
+                    this.__sliderOptions = {
+                        slide: this.__onSlide,
+                        start: this.__onStart,
+                        stop: this.__onStop,
+                        change: this.__onChange
+                    };
+                    this.__elementSlider.slider(this.__sliderOptions);
                     // Call __previnit of base class
                     super.__previnit();
                 }
@@ -84,6 +115,24 @@ var TcHmi;
                     /**
                     * Free resources like child controls etc.
                     */
+                }
+                __addValueInHandle() {
+                }
+                /**
+                * -------------------------------------------------- Getter and setter --------------------------------------------------
+                */
+                setSliderValue(newValue) {
+                    let convertedValue = TcHmi.ValueConverter.toNumber(newValue);
+                    if (convertedValue === null)
+                        return;
+                    if (convertedValue === this.__slider1Value)
+                        return;
+                    this.__slider1Value = convertedValue;
+                    this.__elementSlider.slider("value", this.__slider1Value);
+                    TcHmi.EventProvider.raise(this.getId() + '.onPropertyChanged', { 'propertyName': 'SliderValue' });
+                }
+                getSliderValue() {
+                    return this.__slider1Value;
                 }
             }
             TcMonkeys_TwinCAT_HMI_jQueryUI.Slider = Slider;

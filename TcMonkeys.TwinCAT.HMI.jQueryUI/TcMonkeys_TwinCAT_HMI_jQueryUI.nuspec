@@ -16,9 +16,9 @@
     <icon>images/logo.png</icon>
     <dependencies>
       <group targetFramework="native1.12-tchmi">
-        <dependency id="Beckhoff.TwinCAT.HMI.Framework" version="12.754.4" />
         <dependency id="jqueryui.TypeScript.DefinitelyTyped" version="1.5.1" />
         <dependency id="jquery.TypeScript.DefinitelyTyped" version="3.1.2" />
+        <dependency id="Beckhoff.TwinCAT.HMI.Framework" version="12.756.1" />
         <dependency id="Microsoft.TypeScript.MSBuild" version="4.7.4" />
       </group>
     </dependencies>

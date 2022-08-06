@@ -29,6 +29,14 @@ module TcHmi {
                 }
 
                 protected __elementTemplateRoot!: JQuery;
+                protected __elementSlider!: JQuery;
+                protected __elementSliderHandle1!: JQuery;
+                protected __elementSliderHandle2!: JQuery;
+
+                protected __sliderOptions!: JQueryUI.SliderOptions;
+
+                protected __slider1Value!: number;
+                protected __slider2Value!: number;
 
 				/**
                   * If raised, the control object exists in control cache and constructor of each inheritation level was called.
@@ -38,8 +46,31 @@ module TcHmi {
                     // Fetch template root element
                     this.__elementTemplateRoot = this.__element.find('.TcHmi_Controls_TcMonkeys_TwinCAT_HMI_jQueryUI_Slider-Template');
                     if (this.__elementTemplateRoot.length === 0) {
-                        throw new Error('Invalid Template.html');
+                        throw new Error('Invalid Template.html > root element');
                     }
+
+                    // Fetch slider element
+                    this.__elementSlider = this.__elementTemplateRoot.find('.ui-slider');
+                    if (this.__elementSlider.length === 0) {
+                        throw new Error('Invalid Template.html > slider element');
+                    }
+
+                    // Fetch slider element
+                    this.__elementSliderHandle1 = this.__elementSlider.find('.ui-slider-handle');
+                    if (this.__elementSliderHandle1.length === 0) {
+                        throw new Error('Invalid Template.html > slider handle 1 element');
+                    }
+
+
+                    this.__sliderOptions = {
+                        slide:this.__onSlide,
+                        start:this.__onStart,
+                        stop:this.__onStop,
+                        change:this.__onChange
+                    }
+
+                    this.__elementSlider.slider(this.__sliderOptions);
+
                     // Call __previnit of base class
                     super.__previnit();
                 }
@@ -93,6 +124,44 @@ module TcHmi {
                     /**
                     * Free resources like child controls etc.
                     */
+                }
+
+                protected __onChange = (event: Event, ui: JQueryUI.SliderUIParams) => {                    
+                    TcHmi.EventProvider.raise(this.getId() + '.onValueChanged');
+                }
+
+                protected __onStart = (event: Event, ui: JQueryUI.SliderUIParams) => {
+                    TcHmi.EventProvider.raise(this.getId() + '.onSlideStart');
+                }
+
+                protected __onStop = (event: Event, ui: JQueryUI.SliderUIParams) => {
+                    TcHmi.EventProvider.raise(this.getId() + '.onSlideStop');
+                }
+
+                protected __onSlide = (event: Event, ui: JQueryUI.SliderUIParams) => {
+                    this.__slider1Value = ui.value as number;
+                    TcHmi.EventProvider.raise(this.getId() + '.onSlide');
+                    TcHmi.EventProvider.raise(this.getId() + '.onPropertyChanged', {'propertyName':'SliderValue'});
+                }
+
+                protected __addValueInHandle(){
+                    
+                }
+
+                /**
+                * -------------------------------------------------- Getter and setter -------------------------------------------------- 
+                */
+                public setSliderValue(newValue: number | null){
+                    let convertedValue: number | null = TcHmi.ValueConverter.toNumber(newValue);
+                    if (convertedValue === null) return;
+                    if (convertedValue === this.__slider1Value) return;
+                    this.__slider1Value = convertedValue;
+                    this.__elementSlider.slider( "value", this.__slider1Value );
+                    TcHmi.EventProvider.raise(this.getId() + '.onPropertyChanged', {'propertyName':'SliderValue'});
+                }
+
+                public getSliderValue(): number | null{
+                    return this.__slider1Value;
                 }
             }
         }
