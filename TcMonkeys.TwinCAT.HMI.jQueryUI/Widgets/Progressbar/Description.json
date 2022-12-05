@@ -84,32 +84,16 @@
     "events": [
         {
             "category": "Control",
-            "displayName": ".onSlideStart",
-            "name": ".onSlideStart",
+            "displayName": ".onCreate",
+            "name": ".onCreate",
             "heritable": true,
             "visible": true,
             "displayPriority": 10
         },
         {
             "category": "Control",
-            "displayName": ".onSlideStop",
-            "name": ".onSlideStop",
-            "heritable": true,
-            "visible": true,
-            "displayPriority": 10
-        },
-        {
-            "category": "Control",
-            "displayName": ".onSlide",
-            "name": ".onSlide",
-            "heritable": true,
-            "visible": true,
-            "displayPriority": 10
-        },
-        {
-            "category": "Control",
-            "displayName": ".onValueChanged",
-            "name": ".onValueChanged",
+            "displayName": ".onComplete",
+            "name": ".onComplete",
             "heritable": true,
             "visible": true,
             "displayPriority": 10

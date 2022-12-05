@@ -27,19 +27,11 @@ var TcHmi;
                 constructor(element, pcElement, attrs) {
                     /** Call base class constructor */
                     super(element, pcElement, attrs);
-                    this.__onChange = (event, ui) => {
-                        TcHmi.EventProvider.raise(this.getId() + '.onValueChanged');
+                    this.__onCreate = (event, ui) => {
+                        TcHmi.EventProvider.raise(this.getId() + '.onCreate');
                     };
-                    this.__onStart = (event, ui) => {
-                        TcHmi.EventProvider.raise(this.getId() + '.onSlideStart');
-                    };
-                    this.__onStop = (event, ui) => {
-                        TcHmi.EventProvider.raise(this.getId() + '.onSlideStop');
-                    };
-                    this.__onSlide = (event, ui) => {
-                        this.__slider1Value = ui.value;
-                        TcHmi.EventProvider.raise(this.getId() + '.onSlide');
-                        TcHmi.EventProvider.raise(this.getId() + '.onPropertyChanged', { 'propertyName': 'SliderValue' });
+                    this.__onComplete = (event, ui) => {
+                        TcHmi.EventProvider.raise(this.getId() + '.onComplete');
                     };
                 }
                 /**
@@ -53,22 +45,15 @@ var TcHmi;
                         throw new Error('Invalid Template.html > root element');
                     }
                     // Fetch slider element
-                    this.__elementSlider = this.__elementTemplateRoot.find('.ui-slider');
-                    if (this.__elementSlider.length === 0) {
-                        throw new Error('Invalid Template.html > slider element');
+                    this.__elementProgressbar = this.__elementTemplateRoot.find('.ui-progressbar');
+                    if (this.__elementProgressbar.length === 0) {
+                        throw new Error('Invalid Template.html > progressbar element');
                     }
-                    // Fetch slider element
-                    this.__elementSliderHandle1 = this.__elementSlider.find('.ui-slider-handle');
-                    if (this.__elementSliderHandle1.length === 0) {
-                        throw new Error('Invalid Template.html > slider handle 1 element');
-                    }
-                    this.__sliderOptions = {
-                        slide: this.__onSlide,
-                        start: this.__onStart,
-                        stop: this.__onStop,
-                        change: this.__onChange
+                    this.__progressbarOptions = {
+                        create: this.__onCreate,
+                        complete: this.__onComplete,
                     };
-                    this.__elementSlider.slider(this.__sliderOptions);
+                    this.__elementProgressbar.progressbar(this.__progressbarOptions);
                     // Call __previnit of base class
                     super.__previnit();
                 }
@@ -78,7 +63,6 @@ var TcHmi;
                  */
                 __init() {
                     super.__init();
-                    this.__addValueInHandle();
                 }
                 /**
                 * Is called by tachcontrol() after the control instance gets part of the current DOM.
@@ -117,8 +101,6 @@ var TcHmi;
                     * Free resources like child controls etc.
                     */
                 }
-                __addValueInHandle() {
-                }
                 /**
                 * -------------------------------------------------- Getter and setter --------------------------------------------------
                 */
@@ -129,7 +111,7 @@ var TcHmi;
                     if (convertedValue === this.__slider1Value)
                         return;
                     this.__slider1Value = convertedValue;
-                    this.__elementSlider.slider("value", this.__slider1Value);
+                    this.__elementProgressbar.progressbar("value", this.__slider1Value);
                     TcHmi.EventProvider.raise(this.getId() + '.onPropertyChanged', { 'propertyName': 'SliderValue' });
                 }
                 getSliderValue() {

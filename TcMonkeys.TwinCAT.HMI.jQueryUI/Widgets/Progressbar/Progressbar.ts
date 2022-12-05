@@ -29,11 +29,9 @@ module TcHmi {
                 }
 
                 protected __elementTemplateRoot!: JQuery;
-                protected __elementSlider!: JQuery;
-                protected __elementSliderHandle1!: JQuery;
-                protected __elementSliderHandle2!: JQuery;
-
-                protected __sliderOptions!: JQueryUI.SliderOptions;
+                protected __elementProgressbar!: JQuery;
+               
+                protected __progressbarOptions!: JQueryUI.ProgressbarOptions;
 
                 protected __slider1Value!: number;
                 protected __slider2Value!: number;
@@ -50,26 +48,17 @@ module TcHmi {
                     }
 
                     // Fetch slider element
-                    this.__elementSlider = this.__elementTemplateRoot.find('.ui-slider');
-                    if (this.__elementSlider.length === 0) {
-                        throw new Error('Invalid Template.html > slider element');
+                    this.__elementProgressbar = this.__elementTemplateRoot.find('.ui-progressbar');
+                    if (this.__elementProgressbar.length === 0) {
+                        throw new Error('Invalid Template.html > progressbar element');
                     }
 
-                    // Fetch slider element
-                    this.__elementSliderHandle1 = this.__elementSlider.find('.ui-slider-handle');
-                    if (this.__elementSliderHandle1.length === 0) {
-                        throw new Error('Invalid Template.html > slider handle 1 element');
+                    this.__progressbarOptions = {
+                        create: this.__onCreate,
+                        complete: this.__onComplete,
                     }
 
-
-                    this.__sliderOptions = {
-                        slide:this.__onSlide,
-                        start:this.__onStart,
-                        stop:this.__onStop,
-                        change:this.__onChange
-                    }
-
-                    this.__elementSlider.slider(this.__sliderOptions);
+                    this.__elementProgressbar.progressbar(this.__progressbarOptions);
 
 
                     // Call __previnit of base class
@@ -82,7 +71,6 @@ module TcHmi {
                 public __init() {
                     super.__init();                    
 
-                    this.__addValueInHandle();
                 }
 
                 /**
@@ -129,26 +117,12 @@ module TcHmi {
                     */
                 }
 
-                protected __onChange = (event: Event, ui: JQueryUI.SliderUIParams) => {                    
-                    TcHmi.EventProvider.raise(this.getId() + '.onValueChanged');
+                protected __onCreate = (event: Event, ui: JQueryUI.ProgressbarUIParams) => {                    
+                    TcHmi.EventProvider.raise(this.getId() + '.onCreate');
                 }
 
-                protected __onStart = (event: Event, ui: JQueryUI.SliderUIParams) => {
-                    TcHmi.EventProvider.raise(this.getId() + '.onSlideStart');
-                }
-
-                protected __onStop = (event: Event, ui: JQueryUI.SliderUIParams) => {
-                    TcHmi.EventProvider.raise(this.getId() + '.onSlideStop');
-                }
-
-                protected __onSlide = (event: Event, ui: JQueryUI.SliderUIParams) => {
-                    this.__slider1Value = ui.value as number;
-                    TcHmi.EventProvider.raise(this.getId() + '.onSlide');
-                    TcHmi.EventProvider.raise(this.getId() + '.onPropertyChanged', {'propertyName':'SliderValue'});
-                }
-
-                protected __addValueInHandle(){
-                    
+                protected __onComplete = (event: Event, ui: JQueryUI.ProgressbarUIParams) => {
+                    TcHmi.EventProvider.raise(this.getId() + '.onComplete');
                 }
 
                 /**
@@ -159,7 +133,7 @@ module TcHmi {
                     if (convertedValue === null) return;
                     if (convertedValue === this.__slider1Value) return;
                     this.__slider1Value = convertedValue;
-                    this.__elementSlider.slider( "value", this.__slider1Value );
+                    this.__elementProgressbar.progressbar( "value", this.__slider1Value );
                     TcHmi.EventProvider.raise(this.getId() + '.onPropertyChanged', {'propertyName':'SliderValue'});
                 }
 

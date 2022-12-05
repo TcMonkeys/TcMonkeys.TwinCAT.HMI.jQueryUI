@@ -11,10 +11,8 @@ declare module TcHmi {
                  */
                 constructor(element: JQuery, pcElement: JQuery, attrs: TcHmi.Controls.ControlAttributeList);
                 protected __elementTemplateRoot: JQuery;
-                protected __elementSlider: JQuery;
-                protected __elementSliderHandle1: JQuery;
-                protected __elementSliderHandle2: JQuery;
-                protected __sliderOptions: JQueryUI.SliderOptions;
+                protected __elementProgressbar: JQuery;
+                protected __progressbarOptions: JQueryUI.ProgressbarOptions;
                 protected __slider1Value: number;
                 protected __slider2Value: number;
                 /**
@@ -42,11 +40,8 @@ declare module TcHmi {
                 * Will be called automatically if system destroys control!
                 */
                 destroy(): void;
-                protected __onChange: (event: Event, ui: JQueryUI.SliderUIParams) => void;
-                protected __onStart: (event: Event, ui: JQueryUI.SliderUIParams) => void;
-                protected __onStop: (event: Event, ui: JQueryUI.SliderUIParams) => void;
-                protected __onSlide: (event: Event, ui: JQueryUI.SliderUIParams) => void;
-                protected __addValueInHandle(): void;
+                protected __onCreate: (event: Event, ui: JQueryUI.ProgressbarUIParams) => void;
+                protected __onComplete: (event: Event, ui: JQueryUI.ProgressbarUIParams) => void;
                 /**
                 * -------------------------------------------------- Getter and setter --------------------------------------------------
                 */
